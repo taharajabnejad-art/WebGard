@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WebGard | آینده جستجو</title>
+
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0f172a">
+
+<style>
+body{
+    margin:0;
+    font-family: Vazirmatn, Tahoma, sans-serif;
+    background:#0f172a;
+    color:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+.container{
+    text-align:center;
+    width:90%;
+    max-width:500px;
+}
+
+.logo{
+    font-size:40px;
+    font-weight:bold;
+    margin-bottom:10px;
+}
+
+.tagline{
+    color:#94a3b8;
+    margin-bottom:40px;
+}
+
+.search-box{
+    display:flex;
+    background:#1e293b;
+    border-radius:50px;
+    padding:10px 20px;
+    align-items:center;
+}
+
+.search-box input{
+    flex:1;
+    background:none;
+    border:none;
+    color:white;
+    font-size:16px;
+    outline:none;
+}
+
+.search-box button{
+    background:#22c55e;
+    border:none;
+    color:white;
+    padding:10px 20px;
+    border-radius:30px;
+    cursor:pointer;
+}
+
+.search-box button:hover{
+    background:#16a34a;
+}
+
+.shortcuts{
+    margin-top:30px;
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    flex-wrap:wrap;
+}
+
+.shortcut{
+    background:#1e293b;
+    padding:10px 15px;
+    border-radius:15px;
+    font-size:14px;
+    cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <div class="logo">WebGard</div>
+    <div class="tagline">نسل جدید جستجو</div>
+
+    <div class="search-box">
+        <input type="text" id="search" placeholder="جستجو یا وارد کردن آدرس...">
+        <button onclick="search()">برو</button>
+    </div>
+
+    <div class="shortcuts">
+        <div class="shortcut" onclick="go('https://aparat.com')">آپارات</div>
+        <div class="shortcut" onclick="go('https://digikala.com')">دیجی‌کالا</div>
+        <div class="shortcut" onclick="go('https://wikipedia.org')">ویکی‌پدیا</div>
+    </div>
+</div>
+
+<script>
+function search(){
+    let q = document.getElementById("search").value.trim();
+    if(!q) return;
+
+    if(q.includes(".") && !q.includes(" ")){
+        if(!q.startsWith("http")){
+            q = "https://" + q;
+        }
+        window.location.href = q;
+    } else {
+        window.location.href = "https://www.google.com/search?q=" + encodeURIComponent(q);
+    }
+}
+
+function go(url){
+    window.location.href = url;
+}
+
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js');
+}
+</script>
+
+</body>
+</html>
