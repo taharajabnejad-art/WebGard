@@ -2,7 +2,7 @@
   "name": "WebGard",
   "short_name": "WebGard",
   "description": "مرورگر ایرانی نسل جدید با هوش مصنوعی ⭐",
-  "start_url": "./",
+  "start_url": "/index.html",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#000000",
