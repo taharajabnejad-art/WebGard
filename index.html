@@ -6,80 +6,90 @@
 <title>WebGard</title>
 
 <style>
+*{
+  box-sizing:border-box;
+}
+
 body{
-    margin:0;
-    font-family:Tahoma, sans-serif;
-    background:#ffffff;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    height:100vh;
+  margin:0;
+  font-family:Tahoma, sans-serif;
+  background:#ffffff;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
 }
 
 .container{
-    text-align:center;
-    width:90%;
-    max-width:600px;
+  text-align:center;
+  width:90%;
+  max-width:600px;
 }
 
-.logo{
-    font-size:55px;
-    font-weight:bold;
-    margin-bottom:30px;
+/* لوگو */
+.logo img{
+  width:220px;
+  max-width:80%;
+  height:auto;
+  margin-bottom:30px;
 }
 
-.logo span:nth-child(1){color:#4285F4;}
-.logo span:nth-child(2){color:#EA4335;}
-.logo span:nth-child(3){color:#FBBC05;}
-.logo span:nth-child(4){color:#34A853;}
-
+/* باکس سرچ */
 .search-box{
-    position:relative;
+  width:100%;
 }
 
 .search-box input{
-    width:100%;
-    padding:15px 25px;
-    border-radius:30px;
-    border:1px solid #ddd;
-    font-size:16px;
-    outline:none;
-    transition:0.2s;
+  width:100%;
+  padding:14px 20px;
+  border-radius:30px;
+  border:1px solid #dcdcdc;
+  font-size:16px;
+  outline:none;
+  transition:0.2s;
 }
 
 .search-box input:focus{
-    box-shadow:0 2px 8px rgba(0,0,0,0.2);
+  box-shadow:0 2px 8px rgba(0,0,0,0.2);
+  border-color:transparent;
 }
 
-.suggestions{
-    text-align:right;
-    margin-top:10px;
+/* دکمه‌ها */
+.buttons{
+  margin-top:20px;
+}
+
+.buttons button{
+  padding:10px 20px;
+  margin:5px;
+  border:none;
+  border-radius:25px;
+  background:#f8f9fa;
+  cursor:pointer;
+  font-size:14px;
+}
+
+.buttons button:hover{
+  box-shadow:0 2px 6px rgba(0,0,0,0.2);
+}
+
+/* 📱 موبایل */
+@media (max-width:480px){
+  .logo img{
+    width:170px;
+  }
+
+  .search-box input{
     font-size:14px;
-    color:#555;
+    padding:12px 18px;
+  }
 }
 
-.mode{
-    margin-top:15px;
-}
-
-.mode button{
-    padding:8px 15px;
-    border:none;
-    border-radius:20px;
-    margin:5px;
-    cursor:pointer;
-}
-
-.normal{background:#f1f3f4;}
-.ai{background:#e8f0fe;}
-
-button.main{
-    margin-top:20px;
-    padding:10px 30px;
-    border:none;
-    border-radius:25px;
-    background:#f8f9fa;
-    cursor:pointer;
+/* 📲 تبلت */
+@media (min-width:481px) and (max-width:900px){
+  .logo img{
+    width:200px;
+  }
 }
 </style>
 </head>
@@ -88,64 +98,46 @@ button.main{
 
 <div class="container">
 
-    <div class="logo">
-        <span>W</span><span>e</span><span>b</span><span>G</span>ard
-    </div>
+  <div class="logo">
+    <img src="logo.png" alt="WebGard Logo">
+  </div>
 
-    <div class="search-box">
-        <input type="text" id="search" placeholder="جستجو در وب‌گرد..." oninput="liveSuggest()">
-        <div class="suggestions" id="suggestions"></div>
-    </div>
+  <div class="search-box">
+    <input type="text" id="search" placeholder="جستجو یا وارد کردن آدرس سایت...">
+  </div>
 
-    <div class="mode">
-        <button class="normal" onclick="setMode('normal')">جستجوی عادی</button>
-        <button class="ai" onclick="setMode('ai')">حالت هوشمند</button>
-    </div>
-
-    <button class="main" onclick="search()">جستجو</button>
+  <div class="buttons">
+    <button onclick="search()">جستجو</button>
+    <button onclick="feelingLucky()">بخت آزمایی 🚀</button>
+  </div>
 
 </div>
 
 <script>
-let mode = "normal";
-
-function setMode(m){
-    mode = m;
-}
-
 function search(){
-    let q = document.getElementById("search").value.trim();
-    if(!q) return;
+  let q = document.getElementById("search").value.trim();
+  if(!q) return;
 
-    if(mode === "ai"){
-        window.location.href = "/ai?q=" + encodeURIComponent(q);
-    } else {
-        if(q.includes(".") && !q.includes(" ")){
-            if(!q.startsWith("http")){
-                q = "https://" + q;
-            }
-            window.location.href = q;
-        } else {
-            window.location.href = "https://www.google.com/search?q=" + encodeURIComponent(q);
-        }
+  if(q.includes(".") && !q.includes(" ")){
+    if(!q.startsWith("http")){
+      q = "https://" + q;
     }
+    window.location.href = q;
+  }else{
+    window.location.href = "https://www.google.com/search?q=" + encodeURIComponent(q);
+  }
 }
 
-function liveSuggest(){
-    let q = document.getElementById("search").value;
-    let box = document.getElementById("suggestions");
-
-    if(q.length > 2){
-        box.innerHTML = "🔎 پیشنهاد هوشمند: بهترین نتیجه برای \"" + q + "\"";
-    } else {
-        box.innerHTML = "";
-    }
+function feelingLucky(){
+  let q = document.getElementById("search").value.trim();
+  if(!q) return;
+  window.location.href = "https://www.google.com/search?btnI=1&q=" + encodeURIComponent(q);
 }
 
 document.getElementById("search").addEventListener("keypress", function(e){
-    if(e.key === "Enter"){
-        search();
-    }
+  if(e.key === "Enter"){
+    search();
+  }
 });
 </script>
 
