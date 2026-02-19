@@ -32,12 +32,12 @@
       "name": "آخرین اخبار",
       "short_name": "اخبار",
       "description": "رفتن به آخرین اخبار وب‌گرد",
-      "url": "/news",
+      "url": "index.html",
       "icons": [
         {
-          "src": "/icons/shortcut-news.png",
+          "src": "InShot_20260209_125644921.jpg",
           "sizes": "96x96",
-          "type": "image/png"
+          "type": "image/jpg"
         }
       ]
     }
