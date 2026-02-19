@@ -2,19 +2,19 @@
   "name": "Webgard",
   "short_name": "Webgard",
   "description": "مرورگر وب‌گرد با پشتیبانی از PWA 2026",
-  "start_url": "/index.html",
+  "start_url": "index.html",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#1A73E8",
   "icons": [
     {
-      "src": "/icons/icon-192.png",
+      "src": "InShot_20260209_125644921.jpg",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "/icons/icon-512.png",
+      "src": "InShot_20260209_125644921.jpg",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
